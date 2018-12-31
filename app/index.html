@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/CSS" href="temp/CSS/style.min.css">
+  <title>Weight Tracker</title>
+</head>
+<body>
+  <div class="main-container">
+    <h1 class="primary-heading">Weight Tracker</h1>
+    <div class="interface-container">
+        <div>
+          <label for="weight">Enter your weight:</label>
+          <input type="text" id="weigh-input-id" name = "weight" value = "75" class="weight-input">
+          <button class="increment-btn">+</button>
+          <button class="decrement-btn">-</button>
+        </div>
+        <div>
+          <button class="clear-btn">Clear All</button>
+        </div>
+        <div>
+          <button class="submit-btn">Submit</button>
+        </div>           
+    </div>
+    <div class="graph__container">
+      <div class="graph__bar-chart">
+          <div class="graph__chart-header">
+              <h1>Bar Chart</h1>
+            </div>
+          <div class="graph__chart-wrapper" id="chart-wrapper">
+              <!-- <div class="graph__single-bar graph__bar1"></div>
+              <div class="graph__single-bar graph__bar2"></div>
+              <div class="graph__single-bar graph__bar3"><span class="graph__single-bar--tool-tip">test</span></div>
+              <div class="graph__single-bar graph__bar4"></div> -->
+        </div>
+      </div>
+    <div class="radio-btn-container"></div>
+  </div>
+  <script src="temp/scripts/compiled.js"></script>
+</body>
+</html>

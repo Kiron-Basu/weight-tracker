@@ -1,0 +1,96 @@
+.graph {
+    &__container {
+        border: 7px solid red;
+        width: 600px;
+        height: 600px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    &__bar-chart {
+        border: 2px solid green;
+        max-width: 750px;
+        min-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    &__header {
+        padding: 10px;
+    }
+
+    &__chart-wrapper {
+        max-width: 1050px;
+        width: 100%;
+        height: 450px;
+        border-bottom: 1px solid black;
+        display: flex;
+        flex-direction: row;
+        /* justify-content: space-around; */
+        align-items: flex-end;
+        position: relative;
+    }
+
+   
+    
+    &__single-bar {
+        flex-basis: 5%;
+  /* height: 100%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-right: 5px;
+  align-items: flex-start;
+  position: relative;
+  background-color: transparent;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background-color: orange; 
+  &:hover {
+      background-color: grey;   
+  }
+
+  /* &--tool-tip::before {
+      content: "dummy text";
+      z-index: 10;
+    position: absolute;
+    visibility: visible;
+    top: -100px;
+    background-color: beige;
+    border: 1px solid orangered;
+    padding: 2px 1px;
+    color: blue;
+} */
+
+    &--visible {
+        width: 60px !important;
+        opacity: 1 !important;
+    }
+span {
+    opacity: 0;
+    width: 0;
+    height: 100px;
+    position: absolute;
+    color: red;
+    bottom: 300px;
+    background-color: aqua;
+    padding: 3px 5px;
+    border: 1px solid orangered;
+    border-radius: 5px;
+}
+    }
+
+    &__bar1 {
+        height: 100px;
+    }
+    &__bar2 {
+        height: 60px;
+    }
+    &__bar3 {
+        height: 110px;
+    }
+    &__bar4 {
+        height: 30px;
+    }
+}
