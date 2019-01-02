@@ -34,8 +34,8 @@ function submit(){
   weightArray.push($counter.value/3 * 12);
   lastKey = formatAMPM();
   localStorage.setItem(formatAMPM(), weightArray[weightArray.length -1]);
-  console.log(weightArray);
-  console.log('last key: ' + lastKey);
+  // console.log(weightArray);
+  // console.log('last key: ' + lastKey);
   addDiv();
 }
 
@@ -68,7 +68,7 @@ function clear(){
   console.log(weightArray);
 }
 function remove(key){
-  console.log('remove button clicked');
+  console.log('remove button clicked and value received was: ' + key);
   localStorage.removeItem(key);
   document.getElementById(key).parentElement.remove();
 }
@@ -88,30 +88,30 @@ function addDiv () {
     newSpan.innerHTML = key + ' ' + val + '<button>remove</button>';
     newSpan.setAttribute("id", key);
     // console.log(newDiv.style.date);
-    newDiv.addEventListener('mouseover', function() {
-      newSpan.classList.add('graph__single-bar--visible');
-      // var spanner = document.getElementById('span');
+  //   newDiv.addEventListener('mouseover', function() {
+  //     newSpan.classList.add('graph__single-bar--visible');
+  //     // var spanner = document.getElementById('span');
       
-      // console.log('Date: ' + newDiv.style.date + ' / Weight: ' + newDiv.style.height + newSpan);
-  });
-  newDiv.addEventListener('mouseleave', function() {
-    newSpan.classList.remove('graph__single-bar--visible');
-  });
+  //     // console.log('Date: ' + newDiv.style.date + ' / Weight: ' + newDiv.style.height + newSpan);
+  // });
+  // newDiv.addEventListener('mouseleave', function() {
+  //   newSpan.classList.remove('graph__single-bar--visible');
+  // });
   var deleteBtn = document.getElementById(key);
-  deleteBtn.addEventListener('click', function() {
-    console.log('val: ' + val + 'key: ' + key); //this works - if it doesn't, it's the reset function
-    remove(key);
-  });
+  // deleteBtn.addEventListener('click', function() {
+  //   // console.log('val: ' + val + 'key: ' + key); //this works - if it doesn't, it's the reset function
+  //   remove(key);
+  // });
+  addEventListeners(newDiv, newSpan, deleteBtn, key);
 }
 
 function reset() {
   // setTimeout(clear, 3000);
   for (let i=0; i<localStorage.length; i++) {
-    console.log('ran');
+    // console.log('ran');
     const key = localStorage.key(i);
-    console.log(key);
     const val = localStorage.getItem(key);
-    console.log(val);
+    // console.log(val);
     // console.log('key: ' + key + ' and val: ' + val);
     var newDiv = document.createElement('div');
     var newSpan = document.createElement('span');
@@ -120,31 +120,48 @@ function reset() {
     newDiv.appendChild(newSpan);
     document.getElementById("chart-wrapper").appendChild(newDiv);
     // console.log('last element is' + weightArray[weightArray.length - 1]);
-    console.log('key: ' + key + ' and val: ' + val);
+    // console.log('key: ' + key + ' and val: ' + val);
     newDiv.style.height = val + "px";
     newDiv.style.date = key; //needed?
-    newSpan.innerHTML = key + 'blahblah ' + val + '<button id="delete-btn">remove</button>';
+    newSpan.innerHTML = key + ' ' + val + '<button id="delete-btn">remove</button>';
+    newSpan.setAttribute("id", key);
     // console.log(newDiv.style.date);
-    newDiv.addEventListener('mouseover', function() {
-      newSpan.classList.add('graph__single-bar--visible');
-      console.log(val);
-      // var spanner = document.getElementById('span');
+    var deleteBtn = document.getElementById(key);
+    addEventListeners(newDiv, newSpan, deleteBtn, key);
+    console.log('current key is: ' + key);
+  //   newDiv.addEventListener('mouseover', function() {
+  //     newSpan.classList.add('graph__single-bar--visible');
+  //     console.log(val);
+  //     // var spanner = document.getElementById('span');
       
-      // console.log('Date: ' + newDiv.style.date + ' / Weight: ' + newDiv.style.height + newSpan);
+  //     // console.log('Date: ' + newDiv.style.date + ' / Weight: ' + newDiv.style.height + newSpan);
+  // });
+  // newDiv.addEventListener('mouseleave', function() {
+  //   newSpan.classList.remove('graph__single-bar--visible');
+  // });
+  // var deleteBtn = document.getElementById('delete-btn')
+  // deleteBtn.addEventListener('click', function() {
+  //   console.log('clicked');
+  //   remove();
+  // });
+  // console.log('key: ' + key + ' and val: ' + val);
+
+}
+}
+
+function addEventListeners(elementToAddTo, spanToAddClassTo, deleteBtn, key) { //need to rename parameters
+  elementToAddTo.addEventListener('mouseover', function() {
+    spanToAddClassTo.classList.add('graph__single-bar--visible');
   });
-  newDiv.addEventListener('mouseleave', function() {
-    newSpan.classList.remove('graph__single-bar--visible');
+  elementToAddTo.addEventListener('mouseleave', function() {
+    spanToAddClassTo.classList.remove('graph__single-bar--visible');
   });
-  var deleteBtn = document.getElementById('delete-btn')
   deleteBtn.addEventListener('click', function() {
-    console.log('clicked');
-    remove();
+    console.log('clicked and key was: ' + key);
+    remove(key);
   });
-  console.log('key: ' + key + ' and val: ' + val);
-}
-}
 
-
+}
   
 
   // console.log("this is the addDiv: " + weightArray);
