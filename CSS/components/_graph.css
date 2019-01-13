@@ -84,7 +84,10 @@ span {
     transition-property: all;
     transition-duration: .2s;
     transition-delay: .1s;
-}
+    @media only screen and (max-width: 600px) {
+        right: -45px;
+      }
+        }
     }
 }
 
@@ -100,9 +103,9 @@ input {
     background:#f5f5f5;
     font-weight: 100;
     text-align: center;
-    @media only screen and (max-width: 600px) {
-        float: none;
-      }
+        @media only screen and (max-width: 600px) {
+            float: none;
+        }
 }
 
 
