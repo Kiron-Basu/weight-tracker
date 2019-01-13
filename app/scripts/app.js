@@ -1,5 +1,4 @@
-var InputBtns = require('./modules/InputBtns');
-// var CreateBar = require('./modules/CreateBar');
+import Weight from './modules/Weight';
 
-alert('testing is it PIG?');
+var weight = new Weight();
 
