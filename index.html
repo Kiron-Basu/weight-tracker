@@ -4,31 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/CSS" href="temp/CSS/style.min.css">
   <title>Weight Tracker</title>
 </head>
 <body>
   <div class="main-container">
-    <h1 class="primary-heading">Weight Tracker</h1>
-    <div class="interface-container">
-        <div>
-          <label for="weight">Enter your weight:</label>
-          <input type="text" id="weigh-input-id" name = "weight" value = "75" class="weight-input">
-          <button class="increment-btn">+</button>
-          <button class="decrement-btn">-</button>
-        </div>
-        <div>
-          <button class="clear-btn">Clear All</button>
-        </div>
-        <div>
-          <button class="submit">Submit</button>
-        </div>           
+    <h1 class="primary-heading">Weight Tracker (kgs)</h1>
+    <div id="interface-grid">
+      <div class="input-cell">
+          <input type="text" id="weigh-input-id" name = "weight" value = "75" class="weight-input" maxlength="5" required>
+      </div>
+      <div class="increments-nested-grid">
+        <div class="increment-btn-cell"><button class="increment-btn">&xutri;</button></div>
+        <div class="decrement-btn-cell"><button class="decrement-btn">&xdtri;</button></div>
+      </div>
+      <div class="submit-btn-cell"><button class="submit-btn button">Submit</button></div>
+      <div class="clear-btn-cell"><button class="clear-btn button">Clear All</button></div>
     </div>
-    <div class="graph-container">
-
-    </div>
-
-    <div class="radio-btn-container"></div>
+    <div class="graph__container">
+      <div class="graph__bar-chart">
+          <div class="graph__chart-header">
+              <h3 class="diffDisplay">Difference from day one:</h3><span class="difference"></span>
+              <h2>Weight over the last <span id="day-count"></span> day<span class="plural">s</span></h2>
+            </div>
+          <div class="graph__chart-wrapper" id="chart-wrapper">
+        </div>
+      </div>
   </div>
-  <script src="app/scripts/increment-btns.js"></script>
+  <script src="temp/scripts/compiled.js"></script>
 </body>
 </html>

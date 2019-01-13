@@ -1,0 +1,62 @@
+.diffDisplay {
+    font-size: 1.5em;
+    position: absolute;
+    font-weight: 300; 
+    color: rgb(94, 93, 93);
+    right: 100px;
+    top: -8px;
+    /* clear: both; */
+    @media only screen and (max-width: 600px) {
+        font-size: 1em;
+        font-weight: 600;
+        top: -82px;
+        right: 92px;
+       }
+}
+
+.kg {
+    font-size: 1.5em;
+    position: absolute;
+    font-weight: 300; 
+    color: rgb(94, 93, 93);
+    right: 16px;
+    top: -8px;  
+    @media only screen and (max-width: 600px) {
+        font-size: 1em;
+        font-weight: 600;
+       }
+}
+
+.difference {
+    display: flex;
+    font-size: 1.5em;
+    font-weight: 300; 
+    color: rgb(94, 93, 93);
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    &::after {
+        content: " kg";
+        color: rgb(94, 93, 93);
+        font-weight: 300;
+        @media only screen and (max-width: 600px) {
+            font-weight: 600;
+           }
+    }
+
+    &--positive {
+        color: #1cb01c;
+    }
+    &--negative {
+        color: red;
+    }
+    @media only screen and (max-width: 600px) {
+        font-size: 1em;
+        top: -65px;
+        right: 42px;
+        font-weight: 600;
+       }
+}
+.plural {
+    opacity: 0;
+}
