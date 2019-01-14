@@ -1,4 +1,4 @@
-var InputBtns = require('./modules/Input-btns');
+let InputBtns = require('./modules/Input-btns');
 
 alert('testing is it COW?');
 

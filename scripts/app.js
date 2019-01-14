@@ -1,4 +1,4 @@
 import Weight from './modules/Weight';
 
-var weight = new Weight();
+let weight = new Weight();
 
