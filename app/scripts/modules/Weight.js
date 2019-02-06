@@ -1,23 +1,22 @@
 class weightJS {
   constructor() {
-    //Data structures
 let trackerObject = { weight: String, date: String };
 let weightArray = [];
 //from DOM
-var $incrementBtn = document.querySelector('.increment-btn');
-var $decrementBtn = document.querySelector('.decrement-btn');
-var $counter = document.querySelector('.weight-input');
-var $clear = document.querySelector('.clear-btn');
-var $submit = document.querySelector('.submit-btn');
-var dayCountEl = document.getElementById("day-count");
-var plural = document.querySelector(".plural");
-var difference = document.querySelector(".difference");
-//variables
-var firstKey;
-var lastKey;
-var lastDiff;
-var firstWeight;
-var coefficient;
+const $incrementBtn = document.querySelector('.increment-btn');
+const $decrementBtn = document.querySelector('.decrement-btn');
+const $counter = document.querySelector('.weight-input');
+const $clear = document.querySelector('.clear-btn');
+const $submit = document.querySelector('.submit-btn');
+const dayCountEl = document.getElementById("day-count");
+const plural = document.querySelector(".plural");
+const difference = document.querySelector(".difference");
+//letiables
+let firstKey;
+let lastKey;
+let lastDiff;
+let firstWeight;
+let coefficient;
 
 //event listeners
 $incrementBtn.addEventListener('click', increment);
@@ -35,7 +34,7 @@ function returnCheck(event){
   }
 }
 const removeElements = (elms) => [...elms].forEach(el => el.remove());
-//model
+
 function submit(){
   lastKey = getTime();
   trackerObject.weight = ($counter.value * 2);
@@ -49,7 +48,6 @@ function submit(){
     return
   }
   weightArray.push($counter.value * 2);
-  //lastKey = formatAMPM();
   localStorage.setItem(lastKey, JSON.stringify(trackerObject));
   if (localStorage.length === 1) {
     setCoefficient();
@@ -70,19 +68,17 @@ function decrement(){
   $counter.value = parseInt($counter.value) - 1;
 }
 function clearCheck() {
-  if (confirm('Are you sure you want to clear all data?')) {
+  if (confirm('Are you sure you want to clear all previously stored data')) {
     clear();
 } else {
    return;
 }
 }
 function clear(){
-  //this.weightArray = [];
   $counter.value = 0;
   dayCountEl.innerHTML = 0;
-  var checkElExists = document.querySelectorAll(".graph__single-bar"); //ALL -->
-  var arrFromcheckElExists = Array.from(checkElExists);
-  console.log('arr from nodelist = ' + arrFromcheckElExists); //NODELIST
+  let checkElExists = document.querySelectorAll(".graph__single-bar"); //ALL -->
+  let arrFromcheckElExists = Array.from(checkElExists);
   if (arrFromcheckElExists) {
     removeElements(arrFromcheckElExists);
     localStorage.clear();
@@ -90,15 +86,12 @@ function clear(){
   }
   difference.classList.remove("difference--negative") || difference.classList.remove("difference--positive");
   difference.innerHTML = '';
-  console.log(weightArray);
 }
 function remove(key){
-  console.log('2. remove button clicked and value received was: ' + key);
   localStorage.removeItem(key);
-  var el = document.getElementById(key)
+  let el = document.getElementById(key)
   heightDelay(el.parentElement, 0); //height slide down animation
   elRemove(el)
-  //el.parentElement.remove();
   dayCountEl.innerHTML = localStorage.length;
   setCoefficient();
   insertDifference(calcDifference());
@@ -110,7 +103,6 @@ function elRemove(el) {
   lastKey = localStorage.key(localStorage.length-1); //reset last key
 }
 function pluraliser() {
-  console.log('7. got to pooraliser');
   if (localStorage.length === 1) {
    plural.classList.add("plural");
   } else {
@@ -124,7 +116,7 @@ function heightDelay(newDiv, weight) {
 }
 
 function insertDifference(diff) {
-  console.log('passed in diff from func is: ' + diff); //refactor to combine
+  console.log('passed in diff from func is: ' + diff); 
   if(diff > 0) {
     difference.innerHTML = '+' + diff;
   }
@@ -137,28 +129,28 @@ function insertDifference(diff) {
   lastDiff = diff;
 }
 function addDivHelper(weight, date, key) {
-  var newDiv = document.createElement('div');//repeat
-  var newSpan = document.createElement('span');//repeat
-  newDiv.classList.add('graph__single-bar');//repeat
-  newDiv.setAttribute("id", "span");// needed?yes!for clear all//repeat
-  newDiv.appendChild(newSpan);//repeat
-  document.getElementById("chart-wrapper").appendChild(newDiv);//repeat
-  heightDelay(newDiv, weight);//repeat
-  newSpan.innerHTML = '<strong>' + (weight/2) + 'kg' + '</strong>' + '<br>' + date  + '<button id="delete-btn">remove</button>';//repeat
-  pluraliser();//repeat
-  dayCountEl.innerHTML = localStorage.length;//repeat
-  newSpan.setAttribute("id", key);//repeat
-  var deleteBtn = document.getElementById(key);//repeat
-  addEventListeners(newDiv, newSpan, deleteBtn, key);//repeat
+  let newDiv = document.createElement('div');
+  let newSpan = document.createElement('span');
+  newDiv.classList.add('graph__single-bar');
+  newDiv.setAttribute("id", "span");// needed?yes!for clear all
+  newDiv.appendChild(newSpan);
+  document.getElementById("chart-wrapper").appendChild(newDiv);
+  heightDelay(newDiv, weight);
+  newSpan.innerHTML = '<strong>' + (weight/2) + 'kg' + '</strong>' + '<br>' + date  + '<button id="delete-btn">remove</button>';
+  pluraliser();
+  dayCountEl.innerHTML = localStorage.length;
+  newSpan.setAttribute("id", key);
+  let deleteBtn = document.getElementById(key);
+  addEventListeners(newDiv, newSpan, deleteBtn, key);
 }
 function addDiv () {
   if (localStorage.length === 1) {
     firstKey = localStorage.key(0)
   }
-    var key = lastKey;
-    var valAsObj = JSON.parse(localStorage.getItem(key));//repeat
-    const weight = valAsObj.weight;//repeat
-    const date = valAsObj.date;//repeat
+    let key = lastKey;
+    let valAsObj = JSON.parse(localStorage.getItem(key));
+    const weight = valAsObj.weight;
+    const date = valAsObj.date;
   addDivHelper(weight, date, key);
   insertDifference(calcDifference());
 }
@@ -170,7 +162,7 @@ function reset() {
       firstKey = localStorage.key(i);
     }
     const key = localStorage.key(i);
-    var valAsObj = JSON.parse(localStorage.getItem(key));
+    let valAsObj = JSON.parse(localStorage.getItem(key));
     const weight = valAsObj.weight;
     const date = valAsObj.date;
     addDivHelper(weight, date, key);
@@ -180,7 +172,7 @@ setCoefficient();
 insertDifference(Math.round(((JSON.parse(localStorage.getItem(localStorage.key(localStorage.length-1))).weight - JSON.parse(localStorage.getItem(firstKey)).weight)/2)*10)/10);
 }
 
-function addEventListeners(elementToAddTo, spanToAddClassTo, deleteBtn, key) { //need to rename parameters
+function addEventListeners(elementToAddTo, spanToAddClassTo, deleteBtn, key) { 
   elementToAddTo.addEventListener('mouseover', function() {
     spanToAddClassTo.classList.add('graph__single-bar--visible');
   });
@@ -198,12 +190,9 @@ function addEventListeners(elementToAddTo, spanToAddClassTo, deleteBtn, key) { /
     if (localStorage.length === 0) {
       return;
     } else {
-      console.log('4. got to calcDifference');
-      var last = JSON.parse(localStorage.getItem(lastKey)).weight/2; 
-      console.log('5. last = ' + last);
-      var first = JSON.parse(localStorage.getItem(firstKey)).weight/2;
-      console.log('6. first = ' + first);
-      var diff =  last - first;
+      let last = JSON.parse(localStorage.getItem(lastKey)).weight/2; 
+      let first = JSON.parse(localStorage.getItem(firstKey)).weight/2;
+      let diff =  last - first;
       if (diff > 0) {
         difference.classList.add("difference--positive");
         difference.classList.remove("difference--negative");
@@ -227,13 +216,13 @@ function addEventListeners(elementToAddTo, spanToAddClassTo, deleteBtn, key) { /
   }
   
   function formatAMPM() {
-    var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-    var today  = new Date();
+    let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    let today  = new Date();
     return today.toLocaleDateString("en-US", options);
     }
     
     function getTime() {
-      var d = new Date();
+      let d = new Date();
       return d.getTime();
     }      
   }
